@@ -1,0 +1,20 @@
+.App {
+  background: #eee;
+  text-align: center;
+}
+
+.container {
+  background: orange;
+  display: flex;
+  justify-content: center;
+}
+
+.container .login-container {
+  width: 40%;
+  padding: 2%;
+  text-align: center;
+}
+
+.formGroup {
+  margin: 8px;
+}
