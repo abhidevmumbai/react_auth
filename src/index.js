@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { CookiesProvider } from 'react-cookie';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 import {App} from './App';
@@ -8,11 +9,11 @@ import {store} from "./store";
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-    <div>
+    <CookiesProvider>
         <Provider store={store}>
             <App />
         </Provider>
-    </div>,
+    </CookiesProvider>,
     document.getElementById('root')
 );
 
