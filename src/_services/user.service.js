@@ -1,5 +1,6 @@
 export const userService = {
-    login
+    login,
+    search
 };
 
 const requestOptions = {
@@ -26,16 +27,10 @@ function logout() {
   // Todo: remove cookie
 }
 
-function getUser(keyword = 'test') {
-  let req = {...requestOptions}, alias = false;
+function search() {
+  let req = {...requestOptions},keyword = 'test', alias = false;
   req['method'] = 'GET';
-  req['body'] = JSON.stringify({ keyword, alias });
 
-  return fetch(`http://3.122.7.162:5000/v60/admin/search/user`, req)
-  .then((response) => response.json())
-  .then((json) => {
-    console.log('Users', json);
-  }).catch((err) => {
-    console.log(err);
-  });
+  return fetch(`http://3.122.7.162:5000/v60/admin/search/user?keyword=${keyword}&alias=${alias}`, req)
+    .then((response) => response.json());
 }
