@@ -14,6 +14,13 @@ class App extends Component {
         </header>
         <Router>
           <Route exact path="/" component={SearchPage} />
+          {/* <Route exact path="/" render={() => (
+            loggedIn ? (
+              <Redirect to="/dashboard"/>
+            ) : (
+              <PublicHomePage/>
+            )
+          )}/> */}
           <Route exact path="/login" component={LoginPage} />
         </Router>
       </div>

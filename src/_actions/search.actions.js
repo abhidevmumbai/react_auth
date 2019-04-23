@@ -5,11 +5,11 @@ export const searchActions = {
   search
 };
 
-function search() {
+function search(keyword) {
   return dispatch => {
-    dispatch(request());
+    dispatch(request(keyword));
 
-    userService.search().then(
+    userService.search(keyword).then(
       results => {
         dispatch(success(results));
       },
@@ -20,7 +20,7 @@ function search() {
   };
 
   function request() {
-    return { type: searchConstant.SEARCH_REQUEST };
+    return { type: searchConstant.SEARCH_REQUEST, keyword };
   }
   function success(results) {
     console.log("success", results);

@@ -3,10 +3,20 @@
   text-align: center;
 }
 
-.container {
+.row {
+  margin-top: 1rem;
+}
+
+.container-orange {
   background: orange;
-  display: flex;
-  justify-content: center;
+}
+
+.container-grey {
+  background: #eee;
+}
+
+.container-border {
+  border: 10px solid #fff;
 }
 
 .container .login-container {

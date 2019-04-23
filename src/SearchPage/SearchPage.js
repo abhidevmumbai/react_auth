@@ -21,45 +21,68 @@ class SearchPage extends React.Component {
     }
 
     handleChange(e) {
-        const { keyword } = e.target;
+        const keyword = e.target.value;
         this.setState({ keyword });
     }
 
     handleSubmit(e) {
         e.preventDefault();
-        // const { keyword, results } = this.state;
+        const { keyword } = this.state;
         const { dispatch } = this.props;
         
-        dispatch(searchActions.search());
+        if(keyword) {
+            dispatch(searchActions.search(keyword));
+        }
     }
     render() {
-        const { keyword, searching, results } = this.props;
+        const { keyword } = this.state;
+        const { searching, results } = this.props;
         return (
             <div className="container">
-                <div className="search-container">
-                    <div className="search-box">
-                        <form className="form-inline" name="seasrchForm" onSubmit={this.handleSubmit}>
-                            <div className="formGroup">
-                                <input className="form-control" type="text" name="keyword" value={keyword} placeholder="Keyword" onChange={this.handleChange} />
+                <div className="row container-orange container-border">
+                    <div className="col-md-12">
+                        {/* <form className="form-inline" name="seasrchForm" onSubmit={this.handleSubmit}> */}
+                        <div className="row">
+                            <div className="col-md-10">
+                                <div className="formGroup">
+                                    <input className="form-control" type="text" name="keyword" value={keyword} placeholder="Enter User Name" onChange={this.handleChange} />
+                                </div>
                             </div>
-                            <div className="formGroup">                        
-                                <button className="btn btn-primary">Search</button>
+                            <div className="col-md-2">
+                                <div className="formGroup">
+                                    { searching && 
+                                        <button className="btn btn-primary" type="button" disabled>
+                                            <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                            Loading...
+                                        </button>
+                                    }
+                                    { !searching &&                   
+                                        <button className="btn btn-primary" onClick={this.handleSubmit}>Search</button>
+                                    }
+                                </div>
                             </div>
-                        </form>
+                        </div>
+                        {/* </form> */}
                     </div>
-                    { searching && <em>Loading...</em>}
-                    <SearchResults data={results}></SearchResults>
                 </div>
+                { results.length > 0 && 
+                    <div className="row container-grey container-border">
+                        <div className="col-md-12">
+                            <SearchResults keyword={keyword} data={results}></SearchResults>
+                        </div>
+                    </div>
+                }
             </div>
         );
     }
 }
 
 function mapStateToProps(state) {
-    const { searching, results } = state.search;
+    const { searching, keyword, results } = state.search;
     console.log('state', state)
     return {
         searching,
+        keyword,
         results
     };
 }

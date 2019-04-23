@@ -27,8 +27,8 @@ function logout() {
   // Todo: remove cookie
 }
 
-function search() {
-  let req = {...requestOptions},keyword = 'test', alias = false;
+function search(keyword = '') {
+  let req = {...requestOptions}, alias = false;
   req['method'] = 'GET';
 
   return fetch(`http://3.122.7.162:5000/v60/admin/search/user?keyword=${keyword}&alias=${alias}`, req)

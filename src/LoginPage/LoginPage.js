@@ -33,7 +33,7 @@ class LoginPage extends React.Component {
     render() {
         const { username, credential } = this.state;
         return (
-            <div className="container">
+            <div className="container container-bg">
                 <div className="login-container">
                     <form name="loginForm" onSubmit={this.handleSubmit}>
                         <div className="formGroup">
