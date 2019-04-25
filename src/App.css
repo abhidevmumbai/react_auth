@@ -19,10 +19,8 @@
   border: 10px solid #fff;
 }
 
-.container .login-container {
-  width: 40%;
-  padding: 2%;
-  text-align: center;
+.login-form {
+  padding: 20px;
 }
 
 .formGroup {

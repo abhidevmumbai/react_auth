@@ -10,6 +10,7 @@ class LoginPage extends React.Component {
         this.state = {
             username: '',
             credential: '',
+            loggingIn: false
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -32,10 +33,13 @@ class LoginPage extends React.Component {
     }
     render() {
         const { username, credential } = this.state;
+        const { loggingIn } = this.props;
         return (
-            <div className="container container-bg">
-                <div className="login-container">
-                    <form name="loginForm" onSubmit={this.handleSubmit}>
+            <div className="container">
+                <div className="row container-orange container-border">
+                    <div className="col-md-3"></div>
+                    <div className="col-md-6">
+                    <div className="login-form">
                         <div className="formGroup">
                             <input className="form-control" type="text" name="username" value={username} placeholder="Username" onChange={this.handleChange} />
                         </div>
@@ -43,9 +47,20 @@ class LoginPage extends React.Component {
                             <input className="form-control" type="text" name="credential" value={credential} placeholder="Password" onChange={this.handleChange} />
                         </div>
                         <div className="formGroup">                        
-                            <button className="btn btn-primary">Login</button>
+                            { loggingIn && 
+                                <button className="btn btn-primary" type="button" disabled>
+                                    <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                    Logging in...
+                                </button>
+                            }
+                            { !loggingIn &&                   
+                                <button className="btn btn-primary" onClick={this.handleSubmit}>Login</button>
+                            }
+                            {loggingIn}
                         </div>
-                    </form>
+                    </div>
+                    </div>
+                    <div className="col-md-3"></div>
                 </div>
             </div>
         );
