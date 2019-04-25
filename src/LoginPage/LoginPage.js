@@ -7,6 +7,9 @@ class LoginPage extends React.Component {
     constructor(props) {
         super(props);
 
+        // reset login status
+        this.props.dispatch(authActions.logout());
+
         this.state = {
             username: '',
             credential: '',
@@ -33,7 +36,7 @@ class LoginPage extends React.Component {
     }
     render() {
         const { username, credential } = this.state;
-        const { loggingIn } = this.props;
+        const { loggingIn, cookies } = this.props;
         return (
             <div className="container">
                 <div className="row container-orange container-border">
@@ -60,17 +63,18 @@ class LoginPage extends React.Component {
                         </div>
                     </div>
                     </div>
-                    <div className="col-md-3"></div>
+                    <div className="col-md-3">{cookies}</div>
                 </div>
             </div>
         );
     }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
     const { loggingIn } = state.auth;
     return {
-        loggingIn
+        loggingIn,
+        cookies: ownProps.cookies
     };
 }
 

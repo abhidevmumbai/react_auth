@@ -13,7 +13,7 @@ function login(username, password) {
         userService.login(username, password)
             .then(
                 user => { 
-                    dispatch(success(user));
+                    dispatch(success(username));
                 },
                 error => {
                     dispatch(failure(error));
@@ -26,7 +26,7 @@ function login(username, password) {
     function failure(error) { return { type: authConstant.LOGIN_FAILURE, error } }
 }
 
-function logout() {
-    userService.logout();
+function logout(username) {
+    userService.logout(username);
     return { type: authConstant.LOGOUT };
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
 import { searchActions } from '../_actions';
 import { SearchResults } from './SearchResults';
 
@@ -65,6 +66,7 @@ class SearchPage extends React.Component {
                         {/* </form> */}
                     </div>
                 </div>
+                <Link to="/login">Logout</Link>
                 { results.length > 0 && 
                     <div className="row container-grey container-border">
                         <div className="col-md-12">

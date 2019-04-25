@@ -1,5 +1,6 @@
 export const userService = {
     login,
+    logout,
     search
 };
 
@@ -18,13 +19,15 @@ function login(username, credential) {
   .then((response) => response.json())
   .then((json) => {
     console.log('Login', json);
+    localStorage.setItem('user', JSON.stringify(username));
   }).catch((err) => {
     console.log(err);
   });
 }
 
-function logout() {
-  // Todo: remove cookie
+function logout(username) {
+  // Todo: remove user
+  localStorage.removeItem('user', JSON.stringify(username));
 }
 
 function search(keyword = '') {
